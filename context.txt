@@ -1,0 +1,297 @@
+# Software Requirements Specification (SRS)
+
+# Magis Directory
+
+### Discover. Connect. Belong.
+
+---
+
+# 1. Introduction
+
+## 1.1 Purpose
+
+Magis Directory is a web-based directory website designed to showcase the recognized student organizations of Ateneo de Zamboanga University. The platform aims to help students discover organizations that align with their interests, values, and aspirations while promoting greater engagement in campus life.
+
+## 1.2 Scope
+
+The project will be a static informational website that serves as a centralized directory of student organizations. It will provide visitors with organization profiles, descriptions, categories, and links to official social media pages.
+
+The website does not include user accounts, organization applications, content management systems, or administrative dashboards.
+
+## 1.3 Intended Users
+
+* Current students
+* Incoming freshmen
+* Prospective students
+* Faculty and staff
+* Alumni
+* General public
+
+---
+
+# 2. Project Overview
+
+Magis Directory serves as a digital gateway to the student organizations of Ateneo de Zamboanga University. The website aims to simplify organization discovery by presenting information in an organized, visually appealing, and accessible format.
+
+The platform is intended to encourage student involvement and help visitors gain a deeper understanding of the diverse communities within the university.
+
+---
+
+# 3. Objectives
+
+The website shall:
+
+* Showcase the different student organizations within Ateneo de Zamboanga University.
+* Provide accessible information about each organization.
+* Promote student involvement and engagement.
+* Serve as a centralized source of organization information.
+* Reflect the Ignatian spirit of community, leadership, and service.
+
+---
+
+# 4. Website Structure
+
+The website shall consist of the following pages:
+
+## 4.1 Landing Page
+
+A homepage introducing Ateneo de Zamboanga University and the purpose of Magis Directory.
+
+### Sections
+
+* Hero Section
+* About Magis Directory
+* Organization Categories
+* Featured Organizations
+* Call-to-Action Section
+
+---
+
+## 4.2 Organization Directory
+
+A page that displays all student organizations.
+
+### Features
+
+* Browse organizations
+* Search organizations by name
+* Filter organizations by category
+* View organization summaries
+
+---
+
+## 4.3 Organization Profile Page
+
+A dedicated page for each organization.
+
+### Information Displayed
+
+* Organization Name
+* Organization Logo
+* Category
+* Description
+* Mission or Purpose
+* Official Social Media Links
+* Related Organizations
+
+---
+
+# 5. Functional Requirements
+
+## FR-01 Landing Page Display
+
+The website shall display information about Ateneo de Zamboanga University and the purpose of Magis Directory.
+
+## FR-02 Organization Categories
+
+The website shall display organization categories, including:
+
+* Student Government
+* Academic Organizations
+* Culture, Arts, and Multimedia
+* Socio-Civic and Political Organizations
+* Environmental Organizations
+
+## FR-03 Organization Directory
+
+Users shall be able to browse all organizations listed in the directory.
+
+## FR-04 Search Functionality
+
+Users shall be able to search organizations using organization names.
+
+## FR-05 Category Filtering
+
+Users shall be able to filter organizations by category.
+
+## FR-06 Organization Profiles
+
+Users shall be able to view detailed information about each organization.
+
+## FR-07 External Links
+
+Users shall be able to access official organization social media pages through external links.
+
+## FR-08 Responsive Navigation
+
+Users shall be able to navigate between pages through a responsive navigation menu.
+
+---
+
+# 6. Non-Functional Requirements
+
+## NFR-01 Responsiveness
+
+The website shall function properly on desktop, tablet, and mobile devices.
+
+## NFR-02 Usability
+
+The website shall provide an intuitive and user-friendly browsing experience.
+
+## NFR-03 Performance
+
+The website shall load efficiently under normal internet conditions.
+
+## NFR-04 Accessibility
+
+The website shall utilize readable typography, sufficient color contrast, and accessible navigation elements.
+
+## NFR-05 Maintainability
+
+Organization content shall be easy to update through static content files.
+
+---
+
+# 7. Design Requirements
+
+## Visual Identity
+
+The design shall:
+
+* Reflect the Atenean identity and values.
+* Utilize a clean and modern interface.
+* Emphasize readability and ease of navigation.
+* Maintain consistency across all pages.
+
+## Branding
+
+Website Name:
+**Magis Directory**
+
+Tagline:
+**Discover. Connect. Belong.**
+
+Alternative Taglines:
+
+* Discover Your Community.
+* Find Your Place in AdZU.
+* Explore Organizations. Build Connections.
+* Your Gateway to Student Life.
+
+---
+
+# 8. Technology Stack
+
+## Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+
+## Hosting
+
+* Vercel
+* Netlify
+* GitHub Pages
+
+## Content Management
+
+* Static JSON or Markdown files
+
+No backend server or database is required.
+
+---
+
+# 9. Success Criteria
+
+The project shall be considered successful if:
+
+1. Visitors can easily discover and explore organizations.
+2. Each organization has a dedicated profile page.
+3. Search and filtering features function correctly.
+4. The website is responsive across different screen sizes.
+5. Organization information is presented clearly and accurately.
+6. The website effectively promotes student engagement within Ateneo de Zamboanga University. 
+
+
+#Landing page 
+
+Nav
+Brand: Magis Directory
+Links: Directory · Categories · About
+CTA Button: Browse Organizations
+
+Hero Section
+Eyebrow: Ateneo de Zamboanga University
+Tagline:
+Discover.
+Connect.
+Belong.
+Subheading:
+Find the student organizations that match who you are — and who you want to become. Magis Directory is your guide to the recognized communities of AdZU.
+CTA Button: Explore Organizations
+
+About Magis Directory
+Eyebrow: About Magis Directory
+Heading: One place to find your community at AdZU
+Body:
+Ateneo de Zamboanga University is home to a rich and diverse ecosystem of student organizations — from academic societies and cultural groups to civic advocates and environmental champions.
+Magis Directory brings all of them together in one searchable, browsable platform so you can find the organizations that reflect who you are and who you want to become. Rooted in the Ignatian call to be magis — more — this directory invites you to go beyond the classroom and into the life of the university.
+Stats:
+
+30+ Recognized organizations
+5 Organization categories
+Free to explore
+One Ateneo community
+
+
+Organization Categories
+Eyebrow: Browse by category
+Heading: Every kind of community, one directory
+Subheading: Find organizations that match your passions and goals.
+Categories:
+
+Student Government — Represents student voice
+Academic Organizations — Discipline-based societies
+Culture, Arts & Multimedia — Creative communities
+Socio-Civic & Political Organizations — Service and advocacy
+Environmental Organizations — Planet-forward groups
+
+
+Featured Organizations
+Eyebrow: Featured organizations
+Heading: A few places to start
+Link: View all organizations →
+Sample Org Cards (replace with real data):
+
+Student Council of AdZU · Student Government
+The primary representative body of the student population, advocating for student rights and welfare.
+Junior Ateneans in Science · Academic Organizations
+Fosters scientific excellence and curiosity through research, talks, and collaborative projects.
+AdZU Fine Arts Society · Culture, Arts & Multimedia
+A home for visual artists, musicians, and creatives celebrating Atenean culture through art.
+Green Ateneans Movement · Environmental Organizations
+Dedicated to environmental stewardship and sustainable action within the AdZU community.
+
+
+Call to Action
+Eyebrow: Ready to find your place?
+Heading: Your community is already here.
+Body: Browse every recognized organization at Ateneo de Zamboanga University. Search by name, filter by category, and discover where you belong.
+Primary CTA: Browse the Directory
+Secondary CTA: Learn about Magis
+
+Footer
+Brand: Magis Directory
+Tagline: Ateneo de Zamboanga University · Discover. Connect. Belong.
+
