@@ -15,7 +15,6 @@ const QUICK_QUESTIONS = [
   "How do I form a new student org?",
   "What are the university core values?",
   "What services does AdZU offer students?",
-  "What are the academic load requirements?",
 ];
 
 const KNOWLEDGE_AREAS = [
