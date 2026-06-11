@@ -25,21 +25,20 @@ const KEYWORD_MAP: Record<string, string[]> = {
   "01-schools-and-colleges.md": ["school", "college", "department", "program", "course", "degree", "faculty", "bachelor", "master"],
 };
 
-// ~6000 chars ≈ 1500 tokens; leaves room for system prompt + 600-token reply under 12k TPM
-const MAX_CONTEXT_CHARS = 6000;
+// DeepSeek supports large context windows — allow up to ~40k chars of handbook content
+const MAX_CONTEXT_CHARS = 40000;
 
 function getRelevantContext(question: string): string {
   const q = question.toLowerCase();
   const matched: string[] = [];
 
-  // Collect matching files in priority order (most specific first)
   for (const [file, keywords] of Object.entries(KEYWORD_MAP)) {
     if (keywords.some((kw) => q.includes(kw))) {
       matched.push(file);
     }
   }
 
-  // Include intro only for mission/values questions; otherwise skip to save tokens
+  // Include intro only for mission/values questions
   const introKeywords = ["vision", "mission", "value", "magis", "ignatian", "jesuit", "motto", "history"];
   if (!introKeywords.some((kw) => q.includes(kw))) {
     const introIdx = matched.indexOf("00-introduction.md");
@@ -51,7 +50,6 @@ function getRelevantContext(question: string): string {
     matched.push("organizations.md", "student-services.md");
   }
 
-  // Build context up to character budget (most relevant section first)
   let context = "";
   for (const file of matched) {
     const section = sections.find((s) => s.includes(`### Source: ${file}`));
@@ -95,36 +93,36 @@ export async function POST(req: Request) {
   try {
     const { question } = await req.json();
 
-    const apiKey = process.env.GROQ_API_KEY;
+    const apiKey = process.env.DEEPSEEK_API_KEY;
     console.log("[chat] apiKey present:", !!apiKey, "| question:", question?.slice(0, 40));
     if (!apiKey) {
-      console.error("[chat] GROQ_API_KEY is not set");
+      console.error("[chat] DEEPSEEK_API_KEY is not set");
       return NextResponse.json({ error: "API key not configured" }, { status: 500 });
     }
 
     const relevantContext = getRelevantContext(question);
     const systemInstruction = SYSTEM_BASE + relevantContext + SYSTEM_END;
 
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const response = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "deepseek-chat",
         messages: [
           { role: "system", content: systemInstruction },
           { role: "user", content: question },
         ],
         temperature: 0.2,
-        max_tokens: 600,
+        max_tokens: 1024,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`Groq API error (${response.status}):`, errorText);
+      console.error(`DeepSeek API error (${response.status}):`, errorText);
       if (response.status === 429 || errorText.includes("rate_limit")) {
         return NextResponse.json({
           text: "The assistant is temporarily unavailable due to high demand. Please try again in a moment.",
@@ -137,7 +135,7 @@ export async function POST(req: Request) {
           sources: [],
         }, { status: 200 });
       }
-      throw new Error(`Groq API error: ${response.status} — ${errorText}`);
+      throw new Error(`DeepSeek API error: ${response.status} — ${errorText}`);
     }
 
     const data = await response.json();
