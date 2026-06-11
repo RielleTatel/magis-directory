@@ -4,6 +4,7 @@ export type Organization = {
   category: string;
   description: string;
   logo?: string;
+  link?: string;
 };
 
 export const organizations: Organization[] = [
@@ -25,6 +26,7 @@ export const organizations: Organization[] = [
     description:
       "Serves as the official academic home for BS Accountancy students. It supports professional growth, academic excellence, and collaboration among future accountants.",
     logo: "/logos/Accountancy Academic Organization.jpg",
+    link: "https://www.facebook.com/AAOArdentTigers",
   },
   {
     id: "education-academic-organization",
@@ -33,6 +35,7 @@ export const organizations: Organization[] = [
     description:
       "Represents students pursuing education-related programs. It fosters leadership, professional development, and a commitment to quality teaching.",
     logo: "/logos/EAO.jpg",
+    link: "https://www.facebook.com/adzueao",
   },
   {
     id: "siteao",
@@ -41,6 +44,7 @@ export const organizations: Organization[] = [
     description:
       "Unites students from science, information technology, and engineering disciplines. It encourages academic achievement, collaboration, and technological innovation.",
     logo: "/logos/SITEAO.jpg",
+    link: "https://www.facebook.com/adzusiteao",
   },
   {
     id: "nursing-academic-organization",
@@ -49,6 +53,7 @@ export const organizations: Organization[] = [
     description:
       "Serves as the official organization for nursing students. It promotes professional competence, compassionate service, and academic excellence in healthcare.",
     logo: "/logos/NAO.jpg",
+    link: "https://www.facebook.com/NsgAngels",
   },
   {
     id: "liberal-arts-academic-organization",
@@ -57,6 +62,7 @@ export const organizations: Organization[] = [
     description:
       "Represents students from liberal arts programs. It fosters critical thinking, creativity, and engagement with social and cultural issues.",
     logo: "/logos/LAAO.jpg",
+    link: "https://www.facebook.com/adzulaao",
   },
   {
     id: "jieep-adzu",
@@ -65,6 +71,7 @@ export const organizations: Organization[] = [
     description:
       "Supports electronics engineering students through technical learning, leadership opportunities, and professional development.",
     logo: "/logos/Junior Institute of Electronics Engineers of the Philippines- ADZU Chapter.jpg",
+    link: "https://www.facebook.com/JIECEPADZUChapter",
   },
   {
     id: "samahang-pilosopiya-ng-ateneo",
@@ -73,6 +80,7 @@ export const organizations: Organization[] = [
     description:
       "The co-curricular organization for philosophy students that promotes intellectual inquiry, ethical reflection, and meaningful discussion.",
     logo: "/logos/Samahang Pilosopiya ng Ateneo.jpg",
+    link: "https://www.facebook.com/ateneo.spa",
   },
   {
     id: "information-security-students-organization",
@@ -81,6 +89,7 @@ export const organizations: Organization[] = [
     description:
       "Promotes cybersecurity awareness and responsible digital citizenship. It equips students with the skills needed to address modern cyber threats.",
     logo: "/logos/Information Security Students Organization.jpg",
+    link: "https://www.facebook.com/issoadzu0",
   },
   {
     id: "fabricreate",
@@ -89,6 +98,7 @@ export const organizations: Organization[] = [
     description:
       "Provides opportunities for students to explore digital fabrication, innovation, and design through hands-on learning experiences.",
     logo: "/logos/FabriCreate.jpg",
+    link: "https://www.facebook.com/profile.php?id=61551490432721",
   },
   {
     id: "international-studies-organization",
@@ -97,6 +107,7 @@ export const organizations: Organization[] = [
     description:
       "Serves students of the BA International Studies program while promoting global awareness and cultural understanding.",
     logo: "/logos/International Studies Organization.jpg",
+    link: "https://www.facebook.com/intsisoa",
   },
   {
     id: "bionics",
@@ -105,6 +116,7 @@ export const organizations: Organization[] = [
     description:
       "The home organization for Biomedical Engineering students, fostering innovation at the intersection of healthcare and engineering.",
     logo: "/logos/Biomedical Engineering Network of Integrated Clinical Sciences.jpg",
+    link: "https://www.facebook.com/AdZUBIONICS",
   },
   {
     id: "aicg",
@@ -113,6 +125,7 @@ export const organizations: Organization[] = [
     description:
       "Brings together students from Information Technology, Computer Science, and New Media and Computer Animation programs to foster technical growth and innovation.",
     logo: "/logos/Ateneo Informatics Computing Guild.jpg",
+    link: "https://www.facebook.com/profile.php?id=61572308169719",
   },
   {
     id: "adzu-ignatian-civil-engineering-students-organization",
@@ -121,6 +134,7 @@ export const organizations: Organization[] = [
     description:
       "Supports the academic and professional development of civil engineering students while integrating Ignatian values into engineering practice.",
     logo: "/logos/ADZU Ignatian Civil Engineering Students Organization.jpg",
+    link: "https://www.facebook.com/adzuices",
   },
   {
     id: "ateneo-biological-society",
@@ -129,6 +143,7 @@ export const organizations: Organization[] = [
     description:
       "Unites students passionate about biology and the natural sciences through scientific learning, environmental awareness, and community engagement.",
     logo: "/logos/Ateneo Biological Society.jpg",
+    link: "https://www.facebook.com/AteneoBioSociety",
   },
   {
     id: "ateneo-debate-union",
@@ -137,6 +152,7 @@ export const organizations: Organization[] = [
     description:
       "Develops students' critical thinking, public speaking, and argumentation skills through competitive debate and forensic activities, representing AdZU in local and national competitions.",
     logo: "/logos/Ateneo Debate Union.jpg",
+    link: "https://www.facebook.com/ateneodebateunion",
   },
   {
     id: "foundation-of-ateneo-student-tutors",
@@ -145,6 +161,7 @@ export const organizations: Organization[] = [
     description:
       "Provides peer tutoring services across academic disciplines, helping students achieve excellence while developing the teaching and leadership skills of its tutors.",
     logo: "/logos/Foundation of Ateneo Student Tutors.jpg",
+    link: "https://www.facebook.com/FASTAdZU",
   },
   {
     id: "gdg-on-campus-blue-eagle",
@@ -153,6 +170,7 @@ export const organizations: Organization[] = [
     description:
       "Connects students passionate about technology with Google's developer ecosystem through workshops, hackathons, and tech talks that build practical, industry-relevant skills.",
     logo: "/logos/Google Developer Groups On Campus Blue Eagle.jpg",
+    link: "https://www.facebook.com/gdgocblueeagle",
   },
 
   // Business
@@ -163,6 +181,7 @@ export const organizations: Organization[] = [
     description:
       "Supports students enrolled in management-related programs. It promotes leadership, innovation, and practical business learning.",
     logo: "/logos/MAO.jpg",
+    link: "https://www.facebook.com/AdZUMAOLIONS",
   },
   {
     id: "jpia",
@@ -171,6 +190,7 @@ export const organizations: Organization[] = [
     description:
       "Represents students pursuing accounting and related disciplines. It prepares members for the accounting profession through leadership, training, and professional development.",
     logo: "/logos/Junior Philippine Institute of Accountants.jpg",
+    link: "https://www.facebook.com/JPIA.AdZULocalChapter",
   },
   {
     id: "jma-adzu",
@@ -179,6 +199,7 @@ export const organizations: Organization[] = [
     description:
       "Develops future marketing professionals through leadership opportunities, strategic thinking, and practical learning experiences.",
     logo: "/logos/Junior Institute for Marketing Association - Ateneo de Zamboanga University.jpg",
+    link: "https://www.facebook.com/profile.php?id=61578253216803",
   },
   {
     id: "legal-management-society",
@@ -194,6 +215,7 @@ export const organizations: Organization[] = [
     description:
       "Cultivates entrepreneurial mindsets and skills among AdZU students through competitions, mentorship, and experiential learning in business innovation and venture creation.",
     logo: "/logos/Developing Entrepreneur Ateneo League.jpg",
+    link: "https://www.facebook.com/photo?fbid=122103209150965159&set=a.122100667328965159",
   },
   {
     id: "junior-jaycees-chamber-adzu",
@@ -202,6 +224,7 @@ export const organizations: Organization[] = [
     description:
       "The AdZU chapter of the Junior Chamber International, developing young leaders through civic projects, community service, and hands-on leadership training.",
     logo: "/logos/Junior Jaycees Chamber - AdZU.jpg",
+    link: "https://www.facebook.com/jjcateneo",
   },
 
   // Sports and Recreation
@@ -212,6 +235,7 @@ export const organizations: Organization[] = [
     description:
       "The official dance organization of Ateneo de Zamboanga University. It develops performance skills while promoting teamwork, discipline, and artistic expression.",
     logo: "/logos/Ateneo Blue Vigors.jpg",
+    link: "https://www.facebook.com/ateneobluevigor",
   },
   {
     id: "ateneo-eagle-pep-squad",
@@ -220,6 +244,7 @@ export const organizations: Organization[] = [
     description:
       "The university's official cheerleading team that energizes school events through athleticism, teamwork, and school spirit.",
     logo: "/logos/Ateneo Eagle Pep Squad.jpg",
+    link: "https://www.facebook.com/profile.php?id=61563191549045",
   },
   {
     id: "ateneo-music-club",
@@ -228,6 +253,7 @@ export const organizations: Organization[] = [
     description:
       "Brings together students who share a passion for music through collaboration, performance, and skill development.",
     logo: "/logos/Ateneo Music Club.jpg",
+    link: "https://www.facebook.com/profile.php?id=61552065752807",
   },
   {
     id: "teatro-ateneo-de-zamboanga",
@@ -236,6 +262,7 @@ export const organizations: Organization[] = [
     description:
       "Dedicated to theater and performance arts, fostering creativity, storytelling, and cultural appreciation.",
     logo: "/logos/Teatro Ateneo de Zamboanga.jpg",
+    link: "https://www.facebook.com/AdZUTeatro",
   },
   {
     id: "ateneo-art-company",
@@ -244,6 +271,7 @@ export const organizations: Organization[] = [
     description:
       "Promotes artistic expression and cultural awareness through workshops, exhibits, and collaborative projects.",
     logo: "/logos/ArtCo.jpg",
+    link: "https://www.facebook.com/profile.php?id=61576945077566",
   },
 
   // Public and Communications
@@ -254,6 +282,7 @@ export const organizations: Organization[] = [
     description:
       "A student-led multimedia organization specializing in visual storytelling through design, photography, film, animation, and digital media.",
     logo: "/logos/IMAJE - Ateneo de Zamboanga Animators Guild.jpg",
+    link: "https://www.facebook.com/profile.php?id=61577791775990",
   },
   {
     id: "la-liga-historia-zamboanguena",
@@ -262,6 +291,7 @@ export const organizations: Organization[] = [
     description:
       "Promotes historical awareness, cultural preservation, and meaningful dialogue about Zamboanga's heritage and identity.",
     logo: "/logos/La liga.jpg",
+    link: "https://www.facebook.com/profile.php?id=61576886223702",
   },
   {
     id: "association-of-bse-centennial-scholars",
@@ -270,6 +300,7 @@ export const organizations: Organization[] = [
     description:
       "Represents education scholars while promoting leadership, academic excellence, and service.",
     logo: "/logos/Association of BSE Centennial Scholars.jpg",
+    link: "https://www.facebook.com/abcs.adzu",
   },
   {
     id: "society-of-ateneo-scholars",
@@ -278,6 +309,7 @@ export const organizations: Organization[] = [
     description:
       "The official organization of Ateneo scholars that fosters leadership, scholarship, and community among student scholars.",
     logo: "/logos/Society of Ateneo Scholars.jpg",
+    link: "https://www.facebook.com/SocietyOfAteneoScholars",
   },
   {
     id: "the-beacon-publications",
@@ -286,14 +318,16 @@ export const organizations: Organization[] = [
     description:
       "AdZU's official student publication that upholds press freedom and journalistic excellence through news reporting, feature writing, and campus advocacy.",
     logo: "/logos/The Beacon Publications.jpg",
+    link: "https://www.facebook.com/BeaconOfficial",
   },
   {
     id: "sinag",
     name: "SINAG",
     category: "Public and Communications",
     description:
-      "A campus organization that illuminates student voices and amplifies community stories through creative media, advocacy campaigns, and youth-led initiatives.",
+      "The sole Nationalist-Democratic political party in AdZU that aims to advance student politics and promote genuine political engagement for social change.",
     logo: "/logos/SINAG.jpg",
+    link: "https://www.facebook.com/SINAGAdZU",
   },
 
   // Socio-Civic and Political
@@ -304,6 +338,7 @@ export const organizations: Organization[] = [
     description:
       "A socio-civic organization focused on community development and humanitarian service through initiatives addressing education, health, and wellness.",
     logo: "/logos/SADAQAH.jpg",
+    link: "https://www.facebook.com/sadaqahadzu",
   },
   {
     id: "el-fuente-ph",
@@ -312,6 +347,7 @@ export const organizations: Organization[] = [
     description:
       "Empowers youth to become active contributors to society through leadership, advocacy, and civic engagement.",
     logo: "/logos/El Fluente.jpg",
+    link: "https://www.facebook.com/elfuenteph",
   },
   {
     id: "adzu-red-cross-council",
@@ -320,6 +356,7 @@ export const organizations: Organization[] = [
     description:
       "Promotes volunteerism, humanitarian values, disaster preparedness, and community service.",
     logo: "/logos/Red Cross Youth Council.jpg",
+    link: "https://www.facebook.com/profile.php?id=100095575895897",
   },
   {
     id: "laz-bellezas",
@@ -336,6 +373,7 @@ export const organizations: Organization[] = [
     description:
       "A service-oriented organization dedicated to community engagement and social responsibility.",
     logo: "/logos/Stand.jpg",
+    link: "https://www.facebook.com/profile.php?id=61578816240635",
   },
   {
     id: "ipadz",
@@ -343,7 +381,8 @@ export const organizations: Organization[] = [
     category: "Socio-Civic and Political",
     description:
       "Advocates for the rights, welfare, and cultural preservation of indigenous communities.",
-    logo: "/logos/ipadz.jpg",
+    logo: "/logos/Indigenous Peoples' Alliance for Development in Zamboanga - IPAdZ.jpg",
+    link: "https://www.facebook.com/profile.php?id=61578016242276",
   },
   {
     id: "solidarity-of-leaders",
@@ -357,24 +396,27 @@ export const organizations: Organization[] = [
     name: "Ateneo Peers' Circle",
     category: "Socio-Civic and Political",
     description:
-      "A peer support and mental health advocacy organization that promotes emotional well-being, active listening, and psychological health awareness among AdZU students.",
+      "The official student peer group of the College Guidance and Counseling Office, promoting emotional well-being, active listening, and psychological health awareness among AdZU students.",
     logo: "/logos/Ateneo Peers' Circle.jpg",
+    link: "https://www.facebook.com/adzupeerscircle",
   },
   {
     id: "usad-adzu",
     name: "USAD Ateneo de Zamboanga",
     category: "Socio-Civic and Political",
     description:
-      "Fosters unity and development among AdZU students through cultural exchange, community programs, and collaborative action toward shared student welfare.",
+      "The premier social-democratic student-led political party-organization in AdZU since 2014, fostering unity and advocating for student welfare.",
     logo: "/logos/USAD Ateneo de Zamboanga.jpg",
+    link: "https://www.facebook.com/USADAdZU",
   },
   {
     id: "yahra",
     name: "Youth Alliance for Human Rights Ateneo (YAHRA)",
     category: "Socio-Civic and Political",
     description:
-      "Advocates for human rights education and justice through campaigns, forums, and community engagement rooted in the Ignatian call to serve the marginalized.",
+      "Champions the welfare of the Filipino people and advocates for human rights, representing the underdogs of the community through education and civic action.",
     logo: "/logos/Youth Alliance for Human Rights Ateneo - YAHRA.jpg",
+    link: "https://www.facebook.com/yahrateneo",
   },
 
   // Faith and Formation
@@ -385,6 +427,7 @@ export const organizations: Organization[] = [
     description:
       "Trains students as catechists and faith educators, deepening their understanding of Catholic doctrine and preparing them for meaningful service in their communities.",
     logo: "/logos/Ateneo Catechetical Instruction League ADZU.jpg",
+    link: "https://www.facebook.com/adzuacil",
   },
   {
     id: "ateneo-liturgical-society",
@@ -393,6 +436,7 @@ export const organizations: Organization[] = [
     description:
       "Enriches the university's liturgical life by forming student lectors, commentators, and ministers who lead communal worship with reverence and excellence.",
     logo: "/logos/Ateneo Liturgical Society.jpg",
+    link: "https://www.facebook.com/profile.php?id=61578927987749",
   },
   {
     id: "cfc-youth-for-christ-adzu",
@@ -401,6 +445,7 @@ export const organizations: Organization[] = [
     description:
       "A faith-based youth community rooted in the Couples for Christ charism, fostering spiritual growth, discipleship, and Christian living among students.",
     logo: "/logos/CFC Youth For Christ - ADZU Campus Based.jpg",
+    link: "https://www.facebook.com/profile.php?id=61550069305588",
   },
   {
     id: "christian-life-community-adzu",
@@ -409,22 +454,25 @@ export const organizations: Organization[] = [
     description:
       "A Jesuit-inspired faith community that accompanies students in their spiritual journey through prayer, discernment, and apostolic service grounded in Ignatian spirituality.",
     logo: "/logos/Christian Life Community - Ateneo de Zamboanga University .jpg",
+    link: "https://www.facebook.com/profile.php?id=61551053695948",
   },
   {
     id: "every-nation-campus-adzu",
     name: "Every Nation Campus",
     category: "Faith and Formation",
     description:
-      "A campus ministry that seeks to raise up student leaders through worship, discipleship, and mission, building a vibrant Christian community within AdZU.",
+      "A campus ministry that empowers students for Life — Leadership, Integrity, Faith, and Excellence — building a vibrant Christian community within AdZU.",
     logo: "/logos/Every Nation Campus.jpg",
+    link: "https://www.facebook.com/profile.php?id=61578812772584",
   },
   {
     id: "muslim-students-association-adzu",
     name: "Muslim Students Association – AdZU",
     category: "Faith and Formation",
     description:
-      "Serves as a home for Muslim students at AdZU, promoting Islamic values, cultural understanding, and a spirit of unity and inter-religious dialogue on campus.",
+      "The only officially recognized Muslim youth organization at AdZU, providing a safe haven for Muslim students to freely express their faith and fostering harmony and inter-religious dialogue on campus.",
     logo: "/logos/Muslim Students Association - Ateneo de Zamboanga University.jpg",
+    link: "https://www.facebook.com/msaadzu",
   },
   {
     id: "psalm-adzu",
@@ -439,8 +487,9 @@ export const organizations: Organization[] = [
     name: "Society of the Knights of Ignatius – ADZU College",
     category: "Faith and Formation",
     description:
-      "An organization rooted in Ignatian spirituality that forms students into servant-leaders through spiritual exercises, retreats, and values-centered community service.",
+      "The official organization of altar servers of AdZU, forming students into servant-leaders through liturgical ministry and Ignatian spirituality.",
     logo: "/logos/Society of the Knights of Ignatius - ADZU College.jpg",
+    link: "https://www.facebook.com/profile.php?id=100085256014063",
   },
 
   // Environmental
@@ -451,6 +500,7 @@ export const organizations: Organization[] = [
     description:
       "Promotes environmental awareness, sustainability, and conservation efforts while encouraging responsible stewardship of the environment.",
     logo: "/logos/EcoWatch.jpg",
+    link: "https://www.facebook.com/ecowatchadzu",
   },
   {
     id: "safepaws",
@@ -459,5 +509,6 @@ export const organizations: Organization[] = [
     description:
       "Advocates for animal welfare, responsible pet care, and community action to protect the well-being of animals.",
     logo: "/logos/Safepaws.jpg",
+    link: "https://www.facebook.com/profile.php?id=61563775959610",
   },
 ];

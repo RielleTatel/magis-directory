@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Sparkles, SendHorizontal, BookOpen, User, MessageCircle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   id: string;
@@ -247,6 +248,7 @@ const response = await res.json();
                         <div className="flex flex-col gap-2 max-w-[80%]">
                           <div className="bg-[#F0F4FB] rounded-lg rounded-tl-none px-4 py-3">
                             <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
                               components={{
                                 p: ({ children }) => <p className="text-[#2C3E55] text-sm leading-relaxed mb-2 last:mb-0">{children}</p>,
                                 strong: ({ children }) => <strong className="font-semibold text-[#1B3F8B]">{children}</strong>,

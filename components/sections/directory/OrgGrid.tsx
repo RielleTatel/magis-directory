@@ -112,7 +112,9 @@ export default function OrgGrid() {
             {filtered.map((org) => (
               <a
                 key={org.id}
-                href={`/directory/${org.id}`}
+                href={org.link ?? "#"}
+                target={org.link ? "_blank" : undefined}
+                rel={org.link ? "noopener noreferrer" : undefined}
                 className="group flex"
               >
                 <Card className="flex flex-col w-full ring-0 rounded-lg bg-white transition-all duration-200 group-hover:scale-[1.02]">
@@ -149,15 +151,17 @@ export default function OrgGrid() {
                     </CardDescription>
                   </CardContent>
 
-                  <CardFooter className="border-0 bg-transparent pt-0 pb-4">
-                    <div className="flex items-center gap-1 text-[#1B3F8B] font-semibold text-sm">
-                      <span>View profile</span>
-                      <ChevronRight
-                        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                        strokeWidth={2.5}
-                      />
-                    </div>
-                  </CardFooter>
+                  {org.link && (
+                    <CardFooter className="border-0 bg-transparent pt-0 pb-4">
+                      <div className="flex items-center gap-1 text-[#1B3F8B] font-semibold text-sm">
+                        <span>View profile</span>
+                        <ChevronRight
+                          className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                          strokeWidth={2.5}
+                        />
+                      </div>
+                    </CardFooter>
+                  )}
                 </Card>
               </a>
             ))}
