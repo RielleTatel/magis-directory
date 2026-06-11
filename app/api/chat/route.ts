@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
     const fullSystemPrompt = SYSTEM_INSTRUCTION + handbookContext + "\n--- END ADZU KNOWLEDGE BASE ---";
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(geminiUrl, {
       method: "POST",
@@ -62,6 +62,12 @@ export async function POST(req: Request) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Gemini API error (${response.status}):`, errorText);
+      if (response.status === 429) {
+        return NextResponse.json({
+          text: "The assistant is temporarily unavailable due to high demand. Please try again in a moment.",
+          sources: [],
+        }, { status: 200 });
+      }
       throw new Error(`Gemini API error: ${response.status}`);
     }
 
