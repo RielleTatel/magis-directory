@@ -25,33 +25,42 @@ const KEYWORD_MAP: Record<string, string[]> = {
   "01-schools-and-colleges.md": ["school", "college", "department", "program", "course", "degree", "faculty", "bachelor", "master"],
 };
 
+// ~6000 chars ≈ 1500 tokens; leaves room for system prompt + 600-token reply under 12k TPM
+const MAX_CONTEXT_CHARS = 6000;
+
 function getRelevantContext(question: string): string {
   const q = question.toLowerCase();
-  const matched = new Set<string>();
+  const matched: string[] = [];
 
+  // Collect matching files in priority order (most specific first)
   for (const [file, keywords] of Object.entries(KEYWORD_MAP)) {
     if (keywords.some((kw) => q.includes(kw))) {
-      matched.add(file);
+      matched.push(file);
     }
   }
 
-  // Always include introduction for university context
-  matched.add("00-introduction.md");
-
-  // If nothing specific matched, include a broad useful set
-  if (matched.size <= 1) {
-    matched.add("organizations.md");
-    matched.add("student-services.md");
-    matched.add("enrollment.md");
-    matched.add("grading.md");
+  // Include intro only for mission/values questions; otherwise skip to save tokens
+  const introKeywords = ["vision", "mission", "value", "magis", "ignatian", "jesuit", "motto", "history"];
+  if (!introKeywords.some((kw) => q.includes(kw))) {
+    const introIdx = matched.indexOf("00-introduction.md");
+    if (introIdx !== -1) matched.splice(introIdx, 1);
   }
 
-  const relevant = sections.filter((s) => {
-    const sourceMatch = s.match(/### Source: (.+\.md)/);
-    return sourceMatch && matched.has(sourceMatch[1]);
-  });
+  // Fallback if nothing matched
+  if (matched.length === 0) {
+    matched.push("organizations.md", "student-services.md");
+  }
 
-  return relevant.join("\n\n");
+  // Build context up to character budget (most relevant section first)
+  let context = "";
+  for (const file of matched) {
+    const section = sections.find((s) => s.includes(`### Source: ${file}`));
+    if (!section) continue;
+    if (context.length + section.length > MAX_CONTEXT_CHARS) break;
+    context += section + "\n\n";
+  }
+
+  return context;
 }
 
 const SYSTEM_BASE = `You are Magis Assistant, the official AI assistant for the Magis Directory of Ateneo de Zamboanga University (AdZU).
@@ -87,7 +96,9 @@ export async function POST(req: Request) {
     const { question } = await req.json();
 
     const apiKey = process.env.GROQ_API_KEY;
+    console.log("[chat] apiKey present:", !!apiKey, "| question:", question?.slice(0, 40));
     if (!apiKey) {
+      console.error("[chat] GROQ_API_KEY is not set");
       return NextResponse.json({ error: "API key not configured" }, { status: 500 });
     }
 
@@ -107,16 +118,22 @@ export async function POST(req: Request) {
           { role: "user", content: question },
         ],
         temperature: 0.2,
-        max_tokens: 1024,
+        max_tokens: 600,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Groq API error (${response.status}):`, errorText);
-      if (response.status === 429) {
+      if (response.status === 429 || errorText.includes("rate_limit")) {
         return NextResponse.json({
           text: "The assistant is temporarily unavailable due to high demand. Please try again in a moment.",
+          sources: [],
+        }, { status: 200 });
+      }
+      if (response.status === 413 || errorText.includes("too large") || errorText.includes("context_length")) {
+        return NextResponse.json({
+          text: "The request was too large. Please try asking a more specific question.",
           sources: [],
         }, { status: 200 });
       }
