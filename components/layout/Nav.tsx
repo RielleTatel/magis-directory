@@ -4,7 +4,8 @@ import { useState } from "react";
 import { MapPin, ArrowRight, Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Directory", href: "/directory" },
+  { label: "Directory", href: "/pages/directory" },
+  { label: "Magis Assistant", href: "/pages/assistant" },
   { label: "Categories", href: "/#categories" },
   { label: "About", href: "/#about" },
 ];
