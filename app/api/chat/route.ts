@@ -1,18 +1,5 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-function loadHandbookContext(): string {
-  const handbookDir = path.join(process.cwd(), "data", "handbook");
-  const files = fs.readdirSync(handbookDir).filter((f) => f.endsWith(".md"));
-
-  return files
-    .map((file) => {
-      const content = fs.readFileSync(path.join(handbookDir, file), "utf-8");
-      return `### Source: ${file}\n${content}`;
-    })
-    .join("\n\n---\n\n");
-}
+import { handbookContext } from "@/data/handbook-context";
 
 const SYSTEM_INSTRUCTION = `You are Magis Assistant, the official AI assistant for the Magis Directory of Ateneo de Zamboanga University (AdZU).
 
@@ -48,7 +35,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "API key not configured" }, { status: 500 });
     }
 
-    const handbookContext = loadHandbookContext();
     const fullSystemPrompt = SYSTEM_INSTRUCTION + handbookContext + "\n--- END ADZU KNOWLEDGE BASE ---";
 
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
