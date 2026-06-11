@@ -1,4 +1,5 @@
 export type FeaturedOrg = {
+  id: string;
   name: string;
   category: string;
   description: string;
@@ -9,39 +10,43 @@ export type FeaturedOrg = {
 
 export const featuredOrgs: FeaturedOrg[] = [
   {
-    name: "Student Council of AdZU",
+    id: "el-consejo-atenista",
+    name: "El Consejo Atenista",
     category: "Student Government",
     description:
-      "The primary representative body of the student population, advocating for student rights and welfare across all colleges.",
+      "The supreme student government of AdZU, representing and advocating for the interests of the student body through accountable leadership and meaningful service.",
     color: "bg-[#1B3F8B]",
     textColor: "text-white",
     categoryColor: "bg-white/20 text-white",
   },
   {
-    name: "Junior Ateneans in Science",
-    category: "Academic Organizations",
+    id: "siteao",
+    name: "SITEAO",
+    category: "Academic",
     description:
-      "Fosters scientific excellence and curiosity through research, talks, and collaborative projects among AdZU's science students.",
-    color: "bg-[#D6E4F5]",
-    textColor: "text-[#2C3E55]",
-    categoryColor: "bg-[#1B3F8B]/10 text-[#1B3F8B]",
-  },
-  {
-    name: "AdZU Fine Arts Society",
-    category: "Culture, Arts & Multimedia",
-    description:
-      "A home for visual artists, musicians, and creatives celebrating Atenean culture through art in all its forms.",
+      "Unites students from science, information technology, and engineering disciplines through academic achievement, collaboration, and technological innovation.",
     color: "bg-[#4A7FC1]",
     textColor: "text-white",
     categoryColor: "bg-white/20 text-white",
   },
   {
-    name: "Green Ateneans Movement",
-    category: "Environmental Organizations",
+    id: "teatro-ateneo-de-zamboanga",
+    name: "Teatro Ateneo de Zamboanga",
+    category: "Sports and Recreation",
     description:
-      "Dedicated to environmental stewardship and sustainable action within the AdZU community and beyond.",
-    color: "bg-[#F0F4FB]",
-    textColor: "text-[#2C3E55]",
-    categoryColor: "bg-[#1B3F8B]/10 text-[#1B3F8B]",
+      "Dedicated to theater and performance arts, fostering creativity, storytelling, and cultural appreciation within the AdZU community.",
+    color: "bg-[#D6E4F5]",
+    textColor: "text-[#1B3F8B]",
+    categoryColor: "bg-[#1B3F8B]/15 text-[#1B3F8B]",
+  },
+  {
+    id: "adzu-red-cross-council",
+    name: "AdZU Red Cross Council",
+    category: "Socio-Civic and Political",
+    description:
+      "Promotes volunteerism, humanitarian values, disaster preparedness, and community service among Ateneo students.",
+    color: "bg-[#2C3E55]",
+    textColor: "text-white",
+    categoryColor: "bg-white/20 text-white",
   },
 ];

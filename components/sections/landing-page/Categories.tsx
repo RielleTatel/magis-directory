@@ -3,7 +3,7 @@ import { categories } from "@/data/categories";
 
 export default function Categories() {
   return (
-    <section id="categories" className="bg-[#F0F4FB] py-24 lg:py-32">
+    <section id="categories" className="bg-white py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16">
@@ -33,8 +33,8 @@ export default function Categories() {
             return (
               <a
                 key={cat.name}
-                href="#directory"
-                className="group bg-white rounded-lg p-6 flex flex-col gap-4 cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:bg-[#1B3F8B]"
+                href="/directory"
+                className="group bg-[#F0F4FB] rounded-lg p-6 flex flex-col gap-4 cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:bg-[#1B3F8B]"
               >
                 <div className="flex items-start justify-between">
                   <div className="h-14 w-14 bg-[#D6E4F5] rounded-lg flex items-center justify-center transition-all duration-200 group-hover:bg-white/20 group-hover:scale-110">

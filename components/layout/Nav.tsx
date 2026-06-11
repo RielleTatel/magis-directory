@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { MapPin, ArrowRight, Menu, X } from "lucide-react";
 
+const navLinks = [
+  { label: "Directory", href: "/directory" },
+  { label: "Categories", href: "/#categories" },
+  { label: "About", href: "/#about" },
+];
+
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,13 +28,13 @@ export default function Nav() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {["Directory", "Categories", "About"].map((link) => (
+            {navLinks.map(({ label, href }) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
+                key={label}
+                href={href}
                 className="text-[#2C3E55] font-medium text-sm hover:text-[#1B3F8B] transition-colors duration-200"
               >
-                {link}
+                {label}
               </a>
             ))}
           </nav>
@@ -36,7 +42,7 @@ export default function Nav() {
           {/* CTA */}
           <div className="hidden md:flex">
             <a
-              href="#directory"
+              href="/directory"
               className="h-10 px-5 bg-[#1B3F8B] text-white text-sm font-semibold rounded-md flex items-center gap-2 transition-all duration-200 hover:bg-[#163472] hover:scale-105"
             >
               Browse Organizations
@@ -59,18 +65,18 @@ export default function Nav() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t-2 border-[#D6E4F5]">
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
-            {["Directory", "Categories", "About"].map((link) => (
+            {navLinks.map(({ label, href }) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
+                key={label}
+                href={href}
                 className="text-[#2C3E55] font-medium text-base py-2 hover:text-[#1B3F8B] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
-                {link}
+                {label}
               </a>
             ))}
             <a
-              href="#directory"
+              href="/directory"
               className="h-12 px-5 bg-[#1B3F8B] text-white text-sm font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-[#163472] transition-colors"
               onClick={() => setMobileOpen(false)}
             >
