@@ -75,7 +75,8 @@ export async function POST(req: Request) {
       sources: ["AdZU Student Handbook"],
     });
   } catch (error) {
-    console.error("Chat API Error:", error);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Chat API Error:", message);
     return NextResponse.json(
       { text: "Sorry, I encountered an error. Please try again.", sources: [] },
       { status: 500 }
