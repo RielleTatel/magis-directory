@@ -33,7 +33,7 @@ export default function Categories() {
             return (
               <a
                 key={cat.name}
-                href="/directory"
+                href="/pages/directory"
                 className="group bg-[#F0F4FB] rounded-lg p-6 flex flex-col gap-4 cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:bg-[#1B3F8B]"
               >
                 <div className="flex items-start justify-between">

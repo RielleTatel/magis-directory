@@ -22,7 +22,7 @@ export default function FeaturedOrgs() {
             </h2>
           </div>
           <a
-            href="/directory"
+            href="/pages/directory"
             className="flex items-center gap-2 text-[#1B3F8B] font-semibold text-sm hover:gap-3 transition-all duration-200 whitespace-nowrap"
           >
             View all organizations

@@ -43,7 +43,7 @@ export default function Hero() {
           {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <a
-              href="/directory"
+              href="/pages/directory"
               className="h-14 px-8 bg-[#D6E4F5] text-[#1B3F8B] text-base font-bold rounded-md flex items-center gap-3 transition-all duration-200 hover:bg-white hover:scale-105"
             >
               Explore Organizations

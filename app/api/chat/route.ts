@@ -1,4 +1,33 @@
 import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
+
+function loadHandbookContext(): string {
+  const handbookDir = path.join(process.cwd(), "data", "handbook");
+  const files = fs.readdirSync(handbookDir).filter((f) => f.endsWith(".md"));
+
+  return files
+    .map((file) => {
+      const content = fs.readFileSync(path.join(handbookDir, file), "utf-8");
+      return `### Source: ${file}\n${content}`;
+    })
+    .join("\n\n---\n\n");
+}
+
+const SYSTEM_INSTRUCTION = `You are Magis Assistant, the official AI assistant for the Magis Directory of Ateneo de Zamboanga University (AdZU).
+
+Your ONLY job is to answer questions about AdZU using the handbook content provided below as your primary source of truth. Follow these rules strictly:
+
+1. ALWAYS ground your answer in the provided handbook content. Quote or paraphrase from it directly.
+2. If the answer is clearly in the handbook, answer confidently and cite the source file name (e.g., "According to grading.md..." or "As stated in organizations.md...").
+3. If the question is about AdZU but the specific detail is NOT in the handbook, say: "I don't have that specific information in my current knowledge base. Please check the AdZU Registrar's Office or the official student handbook for the most up-to-date details."
+4. If the question is NOT about AdZU at all, politely redirect: "I'm here to help with questions about Ateneo de Zamboanga University. Is there something about AdZU I can help you with?"
+5. NEVER answer as if you are a general-purpose assistant. Do not share information about other universities.
+6. Keep answers concise and student-friendly. Use plain language.
+
+--- BEGIN ADZU KNOWLEDGE BASE ---
+
+`;
 
 export async function POST(req: Request) {
   try {
@@ -6,24 +35,31 @@ export async function POST(req: Request) {
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      console.error("GEMINI_API_KEY is not set in environment variables");
       return NextResponse.json({ error: "API key not configured" }, { status: 500 });
     }
 
-    // Call the Gemini API
+    const handbookContext = loadHandbookContext();
+    const fullSystemPrompt = SYSTEM_INSTRUCTION + handbookContext + "\n--- END ADZU KNOWLEDGE BASE ---";
+
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
-    
+
     const response = await fetch(geminiUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        systemInstruction: {
+          parts: [{ text: fullSystemPrompt }],
+        },
         contents: [
           {
+            role: "user",
             parts: [{ text: question }],
           },
         ],
+        generationConfig: {
+          temperature: 0.2,
+          maxOutputTokens: 1024,
+        },
       }),
     });
 
@@ -34,19 +70,18 @@ export async function POST(req: Request) {
     }
 
     const data = await response.json();
-    
-    // Extract the text from Gemini's response structure
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
+    const text =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "Sorry, I couldn't generate a response.";
 
-    // Return it in the format your UI expects
     return NextResponse.json({
-      text: text,
-      sources: ["Gemini AI"]
+      text,
+      sources: ["AdZU Student Handbook"],
     });
   } catch (error) {
     console.error("Chat API Error:", error);
     return NextResponse.json(
-      { text: "Sorry, I encountered an error connecting to the AI.", sources: [] },
+      { text: "Sorry, I encountered an error. Please try again.", sources: [] },
       { status: 500 }
     );
   }

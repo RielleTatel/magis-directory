@@ -43,7 +43,7 @@ export default function Nav() {
           {/* CTA */}
           <div className="hidden md:flex">
             <a
-              href="/directory"
+              href="/pages/directory"
               className="h-10 px-5 bg-[#1B3F8B] text-white text-sm font-semibold rounded-md flex items-center gap-2 transition-all duration-200 hover:bg-[#163472] hover:scale-105"
             >
               Browse Organizations
@@ -77,7 +77,7 @@ export default function Nav() {
               </a>
             ))}
             <a
-              href="/directory"
+              href="/pages/directory"
               className="h-12 px-5 bg-[#1B3F8B] text-white text-sm font-semibold rounded-md flex items-center justify-center gap-2 hover:bg-[#163472] transition-colors"
               onClick={() => setMobileOpen(false)}
             >

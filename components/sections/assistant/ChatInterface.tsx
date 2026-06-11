@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Sparkles, SendHorizontal, BookOpen, User, MessageCircle } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   id: string;
@@ -245,7 +246,27 @@ const response = await res.json();
                         </div>
                         <div className="flex flex-col gap-2 max-w-[80%]">
                           <div className="bg-[#F0F4FB] rounded-lg rounded-tl-none px-4 py-3">
-                            <p className="text-[#2C3E55] text-sm leading-relaxed">{msg.text}</p>
+                            <ReactMarkdown
+                              components={{
+                                p: ({ children }) => <p className="text-[#2C3E55] text-sm leading-relaxed mb-2 last:mb-0">{children}</p>,
+                                strong: ({ children }) => <strong className="font-semibold text-[#1B3F8B]">{children}</strong>,
+                                em: ({ children }) => <em className="italic text-[#2C3E55]/80">{children}</em>,
+                                ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-sm text-[#2C3E55] my-2">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 text-sm text-[#2C3E55] my-2">{children}</ol>,
+                                li: ({ children }) => <li className="text-sm leading-relaxed">{children}</li>,
+                                h3: ({ children }) => <h3 className="font-bold text-[#2C3E55] text-sm mt-3 mb-1">{children}</h3>,
+                                h4: ({ children }) => <h4 className="font-semibold text-[#2C3E55] text-sm mt-2 mb-1">{children}</h4>,
+                                code: ({ children }) => <code className="bg-[#D6E4F5] text-[#1B3F8B] text-xs px-1 py-0.5 rounded font-mono">{children}</code>,
+                                table: ({ children }) => <div className="overflow-x-auto my-3"><table className="text-xs w-full border-collapse">{children}</table></div>,
+                                thead: ({ children }) => <thead className="bg-[#D6E4F5]">{children}</thead>,
+                                th: ({ children }) => <th className="text-left text-[#1B3F8B] font-semibold px-3 py-2 border border-[#C8D6E8]">{children}</th>,
+                                td: ({ children }) => <td className="px-3 py-2 border border-[#C8D6E8] text-[#2C3E55]">{children}</td>,
+                                tr: ({ children }) => <tr className="even:bg-[#F0F4FB]">{children}</tr>,
+                                hr: () => <hr className="border-[#C8D6E8] my-3" />,
+                              }}
+                            >
+                              {msg.text}
+                            </ReactMarkdown>
                           </div>
                           {msg.sources && msg.sources.length > 0 && (
                             <div className="flex flex-wrap gap-2">
