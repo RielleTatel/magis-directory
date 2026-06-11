@@ -34,7 +34,7 @@ export default function CTA() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="#directory"
+              href="/directory"
               className="h-14 px-8 bg-white text-[#1B3F8B] text-base font-bold rounded-md flex items-center gap-3 transition-all duration-200 hover:bg-[#D6E4F5] hover:scale-105"
             >
               Browse the Directory
