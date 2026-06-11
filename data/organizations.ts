@@ -148,7 +148,7 @@ export const organizations: Organization[] = [
   {
     id: "ateneo-debate-union",
     name: "Ateneo Debate Union",
-    category: "Academic",
+    category: "Public and Communications",
     description:
       "Develops students' critical thinking, public speaking, and argumentation skills through competitive debate and forensic activities, representing AdZU in local and national competitions.",
     logo: "/logos/Ateneo Debate Union.jpg",
@@ -157,7 +157,7 @@ export const organizations: Organization[] = [
   {
     id: "foundation-of-ateneo-student-tutors",
     name: "Foundation of Ateneo Student Tutors (FAST)",
-    category: "Academic",
+    category: "Socio-Civic and Political",
     description:
       "Provides peer tutoring services across academic disciplines, helping students achieve excellence while developing the teaching and leadership skills of its tutors.",
     logo: "/logos/Foundation of Ateneo Student Tutors.jpg",
@@ -166,7 +166,7 @@ export const organizations: Organization[] = [
   {
     id: "gdg-on-campus-blue-eagle",
     name: "Google Developer Groups On Campus Blue Eagle",
-    category: "Academic",
+    category: "Socio-Civic and Political",
     description:
       "Connects students passionate about technology with Google's developer ecosystem through workshops, hackathons, and tech talks that build practical, industry-relevant skills.",
     logo: "/logos/Google Developer Groups On Campus Blue Eagle.jpg",
@@ -177,7 +177,7 @@ export const organizations: Organization[] = [
   {
     id: "management-academic-organization",
     name: "Management Academic Organization",
-    category: "Business",
+    category: "Academic",
     description:
       "Supports students enrolled in management-related programs. It promotes leadership, innovation, and practical business learning.",
     logo: "/logos/MAO.jpg",
@@ -186,7 +186,7 @@ export const organizations: Organization[] = [
   {
     id: "jpia",
     name: "Junior Philippine Institute of Accountants (JPIA)",
-    category: "Business",
+    category: "Socio-Civic and Political",
     description:
       "Represents students pursuing accounting and related disciplines. It prepares members for the accounting profession through leadership, training, and professional development.",
     logo: "/logos/Junior Philippine Institute of Accountants.jpg",
@@ -220,7 +220,7 @@ export const organizations: Organization[] = [
   {
     id: "junior-jaycees-chamber-adzu",
     name: "Junior Jaycees Chamber – AdZU",
-    category: "Business",
+    category: "Socio-Civic and Political",
     description:
       "The AdZU chapter of the Junior Chamber International, developing young leaders through civic projects, community service, and hands-on leadership training.",
     logo: "/logos/Junior Jaycees Chamber - AdZU.jpg",
@@ -278,7 +278,7 @@ export const organizations: Organization[] = [
   {
     id: "imaje",
     name: "IMAJE",
-    category: "Public and Communications",
+    category: "Academic",
     description:
       "A student-led multimedia organization specializing in visual storytelling through design, photography, film, animation, and digital media.",
     logo: "/logos/IMAJE - Ateneo de Zamboanga Animators Guild.jpg",
@@ -287,7 +287,7 @@ export const organizations: Organization[] = [
   {
     id: "la-liga-historia-zamboanguena",
     name: "La Liga Historia Zamboangueña",
-    category: "Public and Communications",
+    category: "Academic",
     description:
       "Promotes historical awareness, cultural preservation, and meaningful dialogue about Zamboanga's heritage and identity.",
     logo: "/logos/La liga.jpg",
@@ -296,7 +296,7 @@ export const organizations: Organization[] = [
   {
     id: "association-of-bse-centennial-scholars",
     name: "Association of BSE Centennial Scholars",
-    category: "Public and Communications",
+    category: "Academic",
     description:
       "Represents education scholars while promoting leadership, academic excellence, and service.",
     logo: "/logos/Association of BSE Centennial Scholars.jpg",
@@ -305,7 +305,7 @@ export const organizations: Organization[] = [
   {
     id: "society-of-ateneo-scholars",
     name: "Society of Ateneo Scholars",
-    category: "Public and Communications",
+    category: "Academic",
     description:
       "The official organization of Ateneo scholars that fosters leadership, scholarship, and community among student scholars.",
     logo: "/logos/Society of Ateneo Scholars.jpg",
@@ -314,7 +314,7 @@ export const organizations: Organization[] = [
   {
     id: "the-beacon-publications",
     name: "The Beacon Publications",
-    category: "Public and Communications",
+    category: "Academic",
     description:
       "AdZU's official student publication that upholds press freedom and journalistic excellence through news reporting, feature writing, and campus advocacy.",
     logo: "/logos/The Beacon Publications.jpg",
@@ -323,7 +323,7 @@ export const organizations: Organization[] = [
   {
     id: "sinag",
     name: "SINAG",
-    category: "Public and Communications",
+    category: "Socio-Civic and Political",
     description:
       "The sole Nationalist-Democratic political party in AdZU that aims to advance student politics and promote genuine political engagement for social change.",
     logo: "/logos/SINAG.jpg",

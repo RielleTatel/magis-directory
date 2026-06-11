@@ -5,6 +5,37 @@ import { Sparkles, SendHorizontal, BookOpen, User, MessageCircle } from "lucide-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+const DAILY_LIMIT = 3;
+const LS_KEY = "magis_chat_usage";
+
+interface UsageData {
+  count: number;
+  date: string;
+}
+
+function getTodayDate() {
+  return new Date().toISOString().split("T")[0];
+}
+
+function getUsage(): UsageData {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return { count: 0, date: getTodayDate() };
+    const parsed: UsageData = JSON.parse(raw);
+    if (parsed.date !== getTodayDate()) return { count: 0, date: getTodayDate() };
+    return parsed;
+  } catch {
+    return { count: 0, date: getTodayDate() };
+  }
+}
+
+function incrementUsage() {
+  const usage = getUsage();
+  const updated = { count: usage.count + 1, date: getTodayDate() };
+  localStorage.setItem(LS_KEY, JSON.stringify(updated));
+  return updated;
+}
+
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -81,8 +112,13 @@ export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isThinking, setIsThinking] = useState(false);
+  const [remaining, setRemaining] = useState(DAILY_LIMIT);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    setRemaining(DAILY_LIMIT - getUsage().count);
+  }, []);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -103,6 +139,16 @@ export default function ChatInterface() {
     const trimmed = text.trim();
     if (!trimmed || isThinking) return;
 
+    if (remaining <= 0) {
+      setMessages((prev) => [...prev, {
+        id: Date.now().toString(),
+        role: "assistant",
+        text: "You've reached your limit of 3 messages for today. Come back tomorrow!",
+        sources: [],
+      }]);
+      return;
+    }
+
     const userMsg: Message = {
       id: Date.now().toString(),
       role: "user",
@@ -116,13 +162,16 @@ export default function ChatInterface() {
     }
     setIsThinking(true);
 
-  const res = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question: trimmed })
-  });
+    const updated = incrementUsage();
+    setRemaining(DAILY_LIMIT - updated.count);
 
-const response = await res.json();
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: trimmed })
+    });
+
+    const response = await res.json();
 
     const botMsg: Message = {
       id: (Date.now() + 1).toString(),
@@ -133,7 +182,7 @@ const response = await res.json();
 
     setIsThinking(false);
     setMessages((prev) => [...prev, botMsg]);
-  }, [isThinking]);
+  }, [isThinking, remaining]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -329,22 +378,28 @@ const response = await res.json();
                     adjustTextareaHeight();
                   }}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask anything about AdZU…"
+                  placeholder={remaining <= 0 ? "Daily limit reached. Come back tomorrow." : "Ask anything about AdZU…"}
                   rows={1}
-                  className="flex-1 resize-none bg-[#F0F4FB] border border-[#C8D6E8] rounded-md px-4 py-3 text-sm text-[#2C3E55] placeholder:text-[#2C3E55]/40 focus:outline-none focus:border-[#1B3F8B] transition-colors"
+                  disabled={remaining <= 0}
+                  className="flex-1 resize-none bg-[#F0F4FB] border border-[#C8D6E8] rounded-md px-4 py-3 text-sm text-[#2C3E55] placeholder:text-[#2C3E55]/40 focus:outline-none focus:border-[#1B3F8B] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ minHeight: "44px", maxHeight: "96px" }}
                 />
                 <button
                   onClick={() => sendMessage(input)}
-                  disabled={!input.trim() || isThinking}
+                  disabled={!input.trim() || isThinking || remaining <= 0}
                   className="h-10 w-10 bg-[#1B3F8B] hover:bg-[#163472] disabled:opacity-40 rounded-md flex items-center justify-center transition-all flex-shrink-0"
                 >
                   <SendHorizontal className="h-4 w-4 text-white" strokeWidth={2} />
                 </button>
               </div>
-              <p className="text-xs text-[#2C3E55]/40 mt-2">
-                Press Enter to send · Shift+Enter for new line
-              </p>
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-xs text-[#2C3E55]/40">
+                  Press Enter to send · Shift+Enter for new line
+                </p>
+                <p className={`text-xs font-medium ${remaining <= 1 ? "text-red-400" : "text-[#2C3E55]/40"}`}>
+                  {remaining} message{remaining !== 1 ? "s" : ""} remaining today
+                </p>
+              </div>
             </div>
           </div>
 
