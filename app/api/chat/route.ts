@@ -1,7 +1,60 @@
 import { NextResponse } from "next/server";
 import { handbookContext } from "@/data/handbook-context";
 
-const SYSTEM_INSTRUCTION = `You are Magis Assistant, the official AI assistant for the Magis Directory of Ateneo de Zamboanga University (AdZU).
+// Split handbook into named sections once at module load
+const sections = handbookContext.split(/(?=### Source:)/).filter(Boolean);
+
+const KEYWORD_MAP: Record<string, string[]> = {
+  "attendance.md": ["attend", "absent", "late", "tardy", "class hour", "punctual", "presence"],
+  "grading.md": ["grade", "grading", "gpa", "passing", "fail", "incomplete", "inc", "score", "mark", "rating"],
+  "organizations.md": ["org", "organization", "club", "join", "member", "establish", "found", "osa", "student org", "accredit"],
+  "admissions.md": ["admission", "apply", "application", "entrance", "new student", "transfer", "freshman"],
+  "anti-hazing.md": ["haz", "initiation", "frat", "sorority", "pledge", "paddle"],
+  "discipline.md": ["disciplin", "violat", "misconduct", "suspend", "expel", "sanction", "offense", "prohibit", "penalty", "punishment"],
+  "drug-testing.md": ["drug", "substance", "narcotic", "testing"],
+  "enrollment.md": ["enroll", "register", "registration", "load", "unit", "add", "drop", "subject", "overload", "probation"],
+  "evacuation-procedures.md": ["evacuat", "emergency", "fire", "earthquake", "drill", "safety", "disaster"],
+  "examinations.md": ["exam", "test", "midterm", "final", "quiz", "assessment", "cheating", "academic dishonesty"],
+  "graduation-and-retention.md": ["graduat", "graduate", "retention", "dean", "honor", "latin honor", "cum laude", "thesis", "capstone"],
+  "student-services.md": ["service", "office", "guidance", "counsel", "health", "library", "registrar", "canteen", "clinic", "scholarship"],
+  "uniform-and-dress-code.md": ["uniform", "dress", "attire", "cloth", "wear", "appearance", "id", "identification"],
+  "campus-journalism.md": ["journalism", "publication", "newspaper", "media", "press", "school paper", "writer"],
+  "codi-protection-of-minors.md": ["minor", "child", "protection", "codi", "safeguard", "abuse"],
+  "data-privacy.md": ["data", "privacy", "personal information", "consent", "record"],
+  "00-introduction.md": ["vision", "mission", "value", "magis", "ignatian", "history", "jesuit", "commitment", "core value", "motto"],
+  "01-schools-and-colleges.md": ["school", "college", "department", "program", "course", "degree", "faculty", "bachelor", "master"],
+};
+
+function getRelevantContext(question: string): string {
+  const q = question.toLowerCase();
+  const matched = new Set<string>();
+
+  for (const [file, keywords] of Object.entries(KEYWORD_MAP)) {
+    if (keywords.some((kw) => q.includes(kw))) {
+      matched.add(file);
+    }
+  }
+
+  // Always include introduction for university context
+  matched.add("00-introduction.md");
+
+  // If nothing specific matched, include a broad useful set
+  if (matched.size <= 1) {
+    matched.add("organizations.md");
+    matched.add("student-services.md");
+    matched.add("enrollment.md");
+    matched.add("grading.md");
+  }
+
+  const relevant = sections.filter((s) => {
+    const sourceMatch = s.match(/### Source: (.+\.md)/);
+    return sourceMatch && matched.has(sourceMatch[1]);
+  });
+
+  return relevant.join("\n\n");
+}
+
+const SYSTEM_BASE = `You are Magis Assistant, the official AI assistant for the Magis Directory of Ateneo de Zamboanga University (AdZU).
 
 Your ONLY job is to answer questions about AdZU using the handbook content provided below as your primary source of truth. Follow these rules strictly:
 
@@ -26,55 +79,52 @@ Your ONLY job is to answer questions about AdZU using the handbook content provi
 
 `;
 
+const SYSTEM_END = `
+--- END ADZU KNOWLEDGE BASE ---`;
+
 export async function POST(req: Request) {
   try {
     const { question } = await req.json();
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: "API key not configured" }, { status: 500 });
     }
 
-    const fullSystemPrompt = SYSTEM_INSTRUCTION + handbookContext + "\n--- END ADZU KNOWLEDGE BASE ---";
+    const relevantContext = getRelevantContext(question);
+    const systemInstruction = SYSTEM_BASE + relevantContext + SYSTEM_END;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
-    const response = await fetch(geminiUrl, {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
       body: JSON.stringify({
-        systemInstruction: {
-          parts: [{ text: fullSystemPrompt }],
-        },
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: question }],
-          },
+        model: "llama-3.3-70b-versatile",
+        messages: [
+          { role: "system", content: systemInstruction },
+          { role: "user", content: question },
         ],
-        generationConfig: {
-          temperature: 0.2,
-          maxOutputTokens: 1024,
-        },
+        temperature: 0.2,
+        max_tokens: 1024,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`Gemini API error (${response.status}):`, errorText);
+      console.error(`Groq API error (${response.status}):`, errorText);
       if (response.status === 429) {
         return NextResponse.json({
           text: "The assistant is temporarily unavailable due to high demand. Please try again in a moment.",
           sources: [],
         }, { status: 200 });
       }
-      throw new Error(`Gemini API error: ${response.status}`);
+      throw new Error(`Groq API error: ${response.status} — ${errorText}`);
     }
 
     const data = await response.json();
-    const text =
-      data.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "Sorry, I couldn't generate a response.";
+    const text = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
 
     return NextResponse.json({
       text,
