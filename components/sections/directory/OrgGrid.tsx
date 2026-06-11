@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { Search, X, ChevronRight } from "lucide-react";
 import {
   Select,
@@ -27,6 +28,7 @@ const CATEGORY_BADGE: Record<string, string> = {
   "Sports and Recreation": "bg-[#2C3E55] text-white",
   "Public and Communications": "bg-[#D6E4F5] text-[#1B3F8B]",
   "Socio-Civic and Political": "bg-[#1B3F8B] text-white",
+  "Faith and Formation": "bg-[#4A7FC1] text-white",
   "Environmental": "bg-[#D6E4F5] text-[#1B3F8B]",
 };
 
@@ -114,6 +116,17 @@ export default function OrgGrid() {
                 className="group flex"
               >
                 <Card className="flex flex-col w-full ring-0 rounded-lg bg-white transition-all duration-200 group-hover:scale-[1.02]">
+                  {org.logo && (
+                    <div className="relative w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
+                      <Image
+                        src={org.logo}
+                        alt={org.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
                   <CardHeader className="pb-2 gap-2">
                     <span
                       className={`self-start text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-md ${

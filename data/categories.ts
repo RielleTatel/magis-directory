@@ -1,4 +1,4 @@
-import { Users, BookOpen, Briefcase, Trophy, Megaphone, Globe, Leaf } from "lucide-react";
+import { Users, BookOpen, Briefcase, Trophy, Megaphone, Globe, Leaf, Heart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type Category = {
@@ -19,13 +19,13 @@ export const categories: Category[] = [
     icon: BookOpen,
     name: "Academic",
     description: "Discipline-based societies fostering scholarly excellence",
-    count: 14,
+    count: 17,
   },
   {
     icon: Briefcase,
     name: "Business",
     description: "Organizations for future professionals in business and finance",
-    count: 4,
+    count: 6,
   },
   {
     icon: Trophy,
@@ -37,13 +37,19 @@ export const categories: Category[] = [
     icon: Megaphone,
     name: "Public and Communications",
     description: "Media, heritage, and scholar communities driving campus discourse",
-    count: 4,
+    count: 6,
   },
   {
     icon: Globe,
     name: "Socio-Civic and Political",
     description: "Service-oriented groups driving advocacy and community action",
-    count: 7,
+    count: 10,
+  },
+  {
+    icon: Heart,
+    name: "Faith and Formation",
+    description: "Faith communities and Ignatian formation groups nurturing the whole person",
+    count: 8,
   },
   {
     icon: Leaf,
