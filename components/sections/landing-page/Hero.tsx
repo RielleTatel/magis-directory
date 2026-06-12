@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -48,6 +48,13 @@ export default function Hero() {
             >
               Explore Organizations
               <ArrowRight className="h-5 w-5" strokeWidth={2.5} />
+            </a>
+            <a
+              href="/pages/assistant"
+              className="h-14 px-8 border-4 border-white/40 text-white text-base font-bold rounded-md flex items-center gap-3 transition-all duration-200 hover:border-white hover:bg-white/10 hover:scale-105"
+            >
+              <Sparkles className="h-5 w-5" strokeWidth={2.5} />
+              Ask Magis AI
             </a>
             <a
               href="#about"

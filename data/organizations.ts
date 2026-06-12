@@ -381,7 +381,7 @@ export const organizations: Organization[] = [
     category: "Socio-Civic and Political",
     description:
       "Advocates for the rights, welfare, and cultural preservation of indigenous communities.",
-    logo: "/logos/Indigenous Peoples' Alliance for Development in Zamboanga - IPAdZ.jpg",
+    logo: "/ipadz.jpg",
     link: "https://www.facebook.com/profile.php?id=61578016242276",
   },
   {
