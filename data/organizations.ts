@@ -290,7 +290,7 @@ export const organizations: Organization[] = [
   category: "Public and Communications",
   description:
   "The Council of Organizations of the Ateneo - Zamboanga is the sole-alliance of all college accredited organizations of the Ateneo de Zamboanga University.",
-  logo: "/logos/coaz",
+  logo: "/logos/coaz.jpg",
   link: "https://www.facebook.com/coazadzu",
   }, 
 
