@@ -2,16 +2,38 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="bg-[#1B3F8B] relative overflow-hidden">
-      {/* Geometric background decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 -right-24 h-96 w-96 bg-white/5 rounded-full" />
-        <div className="absolute bottom-0 left-0 h-64 w-64 bg-[#4A7FC1]/20 rounded-tr-[80px]" />
-        <div className="absolute top-1/3 right-1/4 h-32 w-32 bg-white/5 rounded-lg rotate-12" />
-        <div className="absolute bottom-1/4 right-12 h-20 w-20 bg-white/5 rounded-full" />
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(160deg, #142F69 0%, #1B3F8B 45%, #2E5BA8 100%)",
+      }}
+    >
+      {/* Flat geometric shapes — clear, intentional, on-brand */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large outline ring, top-right anchor */}
+        <div className="absolute -top-40 -right-32 h-[32rem] w-[32rem] rounded-full border-[6px] border-white/20" />
+
+        {/* Outlined diamond on the left margin */}
+        <div className="absolute top-1/3 -left-20 h-60 w-60 rotate-45 border-[6px] border-[#4A7FC1]/45" />
+
+        {/* Small solid square accent, bottom-right above the waves */}
+        <div className="absolute bottom-56 right-16 h-14 w-14 rotate-12 bg-[#D6E4F5]/30" />
+
+        {/* Plus mark — editorial detail */}
+        <div className="absolute top-32 left-1/2 h-12 w-12">
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3px] bg-white/35" />
+          <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[3px] bg-white/35" />
+        </div>
+
+        {/* Thin accent line */}
+        <div className="absolute bottom-72 right-40 h-[2px] w-28 bg-white/25" />
+
+        {/* Atmospheric tint, far left */}
+        <div className="absolute top-2/3 -left-32 h-80 w-80 rounded-full bg-[#4A7FC1]/20" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-36 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-14 pb-48 lg:pt-20 lg:pb-64 relative">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="flex items-center gap-2 mb-8">
@@ -65,6 +87,30 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Animated parallax waves — flow into the next section */}
+      <svg
+        className="hero-waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shapeRendering="auto"
+        aria-hidden="true"
+      >
+        <defs>
+          <path
+            id="hero-gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g className="parallax">
+          <use xlinkHref="#hero-gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+          <use xlinkHref="#hero-gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlinkHref="#hero-gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlinkHref="#hero-gentle-wave" x="48" y="7" fill="#FFFFFF" />
+        </g>
+      </svg>
     </section>
   );
 }

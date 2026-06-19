@@ -283,7 +283,17 @@ export const organizations: Organization[] = [
       "A student-led multimedia organization specializing in visual storytelling through design, photography, film, animation, and digital media.",
     logo: "/logos/IMAJE - Ateneo de Zamboanga Animators Guild.jpg",
     link: "https://www.facebook.com/profile.php?id=61577791775990",
-  },
+  }, 
+  {
+  id: "coaz",
+  name: "Council of Organizations of the Ateneo - Zamboanga",
+  category: "Public and Communications",
+  description:
+  "The Council of Organizations of the Ateneo - Zamboanga is the sole-alliance of all college accredited organizations of the Ateneo de Zamboanga University.",
+  logo: "/logos/coaz",
+  link: "https://www.facebook.com/coazadzu",
+  }, 
+
   {
     id: "la-liga-historia-zamboanguena",
     name: "La Liga Historia Zamboangueña",
