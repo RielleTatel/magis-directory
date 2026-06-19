@@ -5,7 +5,7 @@ import { Sparkles, SendHorizontal, BookOpen, User, MessageCircle } from "lucide-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const DAILY_LIMIT = 3;
+const DAILY_LIMIT = 6;
 const LS_KEY = "magis_chat_usage";
 
 interface UsageData {
@@ -143,7 +143,7 @@ export default function ChatInterface() {
       setMessages((prev) => [...prev, {
         id: Date.now().toString(),
         role: "assistant",
-        text: "You've reached your limit of 3 messages for today. Come back tomorrow!",
+        text: `You've reached your limit of ${DAILY_LIMIT} messages for today. Come back tomorrow!`,
         sources: [],
       }]);
       return;

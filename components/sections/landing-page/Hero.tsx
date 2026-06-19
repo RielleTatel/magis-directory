@@ -9,28 +9,16 @@ export default function Hero() {
           "linear-gradient(160deg, #142F69 0%, #1B3F8B 45%, #2E5BA8 100%)",
       }}
     >
-      {/* Flat geometric shapes — clear, intentional, on-brand */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large outline ring, top-right anchor */}
-        <div className="absolute -top-40 -right-32 h-[32rem] w-[32rem] rounded-full border-[6px] border-white/20" />
-
-        {/* Outlined diamond on the left margin */}
-        <div className="absolute top-1/3 -left-20 h-60 w-60 rotate-45 border-[6px] border-[#4A7FC1]/45" />
-
-        {/* Small solid square accent, bottom-right above the waves */}
-        <div className="absolute bottom-56 right-16 h-14 w-14 rotate-12 bg-[#D6E4F5]/30" />
-
-        {/* Plus mark — editorial detail */}
-        <div className="absolute top-32 left-1/2 h-12 w-12">
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[3px] bg-white/35" />
-          <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[3px] bg-white/35" />
-        </div>
-
-        {/* Thin accent line */}
-        <div className="absolute bottom-72 right-40 h-[2px] w-28 bg-white/25" />
-
-        {/* Atmospheric tint, far left */}
-        <div className="absolute top-2/3 -left-32 h-80 w-80 rounded-full bg-[#4A7FC1]/20" />
+      {/* Geometric shapes — consistent with /pages/assistant and /pages/directory */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top-right circle */}
+        <div className="absolute -top-32 -right-24 h-[28rem] w-[28rem] bg-white/5 rounded-full" />
+        {/* Mid rotated square accent */}
+        <div className="absolute top-1/3 right-1/4 h-32 w-32 bg-white/5 rounded-lg rotate-12" />
+        {/* Small floating circle */}
+        <div className="absolute bottom-72 right-16 h-20 w-20 bg-white/5 rounded-full" />
+        {/* Left-side tint — same family as bottom-left block on other pages */}
+        <div className="absolute top-1/2 -left-20 h-64 w-64 bg-[#4A7FC1]/20 rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-14 pb-48 lg:pt-20 lg:pb-64 relative">
