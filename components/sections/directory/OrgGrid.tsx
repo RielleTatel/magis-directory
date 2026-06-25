@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { Search, X, ChevronRight } from "lucide-react";
+import { Search, X, ChevronRight, Users } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -118,8 +118,8 @@ export default function OrgGrid() {
                 className="group flex"
               >
                 <Card className="flex flex-col w-full ring-0 rounded-lg bg-white transition-all duration-200 group-hover:scale-[1.02]">
-                  {org.logo && (
-                    <div className="relative w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
+                  <div className="relative w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
+                    {org.logo ? (
                       <Image
                         src={org.logo}
                         alt={org.name}
@@ -127,8 +127,12 @@ export default function OrgGrid() {
                         className="object-cover"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-[#D6E4F5]">
+                        <Users className="h-12 w-12 text-[#1B3F8B]/60" strokeWidth={1.5} />
+                      </div>
+                    )}
+                  </div>
                   <CardHeader className="pb-2 gap-2">
                     <span
                       className={`self-start text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-md ${

@@ -14,7 +14,7 @@ export default function Hero() {
         {/* Top-right circle */}
         <div className="absolute -top-32 -right-24 h-[28rem] w-[28rem] bg-white/5 rounded-full" />
         {/* Mid rotated square accent */}
-        <div className="absolute top-1/3 right-1/4 h-32 w-32 bg-white/5 rounded-lg rotate-12" />
+        <div className="hidden md:block absolute top-1/3 right-1/4 h-32 w-32 bg-white/5 rounded-lg rotate-12" />
         {/* Small floating circle */}
         <div className="absolute bottom-72 right-16 h-20 w-20 bg-white/5 rounded-full" />
         {/* Left-side tint — same family as bottom-left block on other pages */}

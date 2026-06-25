@@ -16,6 +16,7 @@ export const organizations: Organization[] = [
     description:
       "The supreme student government of Ateneo de Zamboanga University, representing and advocating for the interests of the student body. Guided by Ignatian values, it promotes accountable leadership, participatory governance, and meaningful service.",
     logo: "/logos/El Consejo Atenista.jpg",
+    link: "https://www.facebook.com/adzueca", 
   },
 
   // Academic
