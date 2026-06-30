@@ -439,7 +439,16 @@ export const organizations: Organization[] = [
       "Trains students as catechists and faith educators, deepening their understanding of Catholic doctrine and preparing them for meaningful service in their communities.",
     logo: "/logos/Ateneo Catechetical Instruction League ADZU.jpg",
     link: "https://www.facebook.com/adzuacil",
-  },
+  }, 
+  {
+  id: "ateneo-lectors-society",
+  name: "Ateneo Lectors Society (ALECS)",
+  category: "Faith and Formation",
+  description:
+    "A faith-based student organization dedicated to the formation of lectors through spiritual growth, liturgical service, and servant leadership, fostering a deeper commitment to God and the Ateneo community.",
+  logo: "/logos/Alecs.jpg",
+  link: "https://www.facebook.com/profile.php?id=61590342519957",
+  }, 
   {
     id: "ateneo-liturgical-society",
     name: "Ateneo Liturgical Society",
